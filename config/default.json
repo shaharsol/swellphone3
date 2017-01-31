@@ -1,0 +1,22 @@
+{
+	"app": {
+		"name": "swellphone3",
+		"domain": "localhost:3000",
+		"prints_domain": "facetogether.ngrok.io",
+		"protocol": "http",
+		"email": "shahar@gnift.com",
+		"cookie_secret": "FooFighters",
+		"unsubscribe_secret": "FooFighters",
+		"paypal_email": "shahar@gighub.com",
+		"commission": 0.1,
+		"max_tasks_per_developer": 2,
+		"cdn_url": ""
+	},
+	"mongo": {
+		"uri": "mongodb://localhost:27017/swellphone3"
+	},
+	"auth": {
+		"username": "admin",
+		"password": "password"
+	}
+}
