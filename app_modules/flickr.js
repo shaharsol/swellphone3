@@ -1,5 +1,9 @@
 var config = require('config')
 var request = require('request')
+var async = require('async')
+var _ = require('underscore')
+var util = require('util')
+
 module.exports = {
   geoSearch: function(lat,lon,radius,callback){
     var photos = [];
@@ -13,12 +17,12 @@ module.exports = {
       function(callback){
         var qs = {
           method: 'flickr.photos.search',
-          api_key: config.get('flicker.api_key'),
+          api_key: config.get('flickr.api_key'),
           lat: lat,
           lon: lon,
           radius: radius,
           format: 'json',
-          nojsoncallback: 1
+          nojsoncallback: 1,
           page: page,
         }
         request('https://api.flickr.com/services/rest/',{qs: qs},function(error,response,body){
@@ -28,14 +32,20 @@ module.exports = {
             callback(response.statusCode + ' : ' + body);
           }else{
             var data = JSON.parse(body)
-            photos = repos.concat(data.photos.photo);
+            photos = photos.concat(data.photos.photo);
             page = data.photos.page * data.photos.perpage > Number(data.photos.total) ? false : data.photos.page + 1;
+            console.log('got %s in page %s, continuibg toi page %s',data.photos.photo.length,data.photos.page,page)
             callback(null,photos);
           }
         });
       },
       function(err,photos){
-        callback(err,photos)
+        var ret = [];
+        _.each(photos,function(photo){
+          ret.push(util.format('https://farm%s.staticflickr.com/%s/%s_%s.jpg',photo.farm,photo.server,photo.id,photo.secret))
+        })
+console.log('final ret is: %s',util.inspect(ret))        
+        callback(err,ret)
       }
     );
 

@@ -19,13 +19,7 @@ var monk = require('monk');
 var mongoUri = config.get('mongo.uri');
 var db = monk(mongoUri);
 
-var users = require('./routes/users');
-var prints = require('./routes/prints');
-// var developers = require('./routes/developers');
-var pwinty = require('./routes/pwinty');
-var paypal = require('./routes/paypal');
-var admin = require('./routes/admin');
-var google = require('./routes/google');
+var index = require('./routes/index');
 
 var app = express();
 
@@ -66,14 +60,7 @@ app.use(function(req,res,next){
 });
 
 
-app.use('/', users);
-app.use('/prints', prints);
-//app.use('/', buyers);
-// app.use('/developers', developers);
-app.use('/pwinty', pwinty);
-app.use('/paypal', paypal);
-app.use('/admin', admin);
-app.use('/google', google);
+app.use('/', index);
 
 
 // catch 404 and forward to error handler
