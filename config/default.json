@@ -18,5 +18,8 @@
 	"auth": {
 		"username": "admin",
 		"password": "password"
+	},
+	"flickr": {
+		"api_key": "0aa4a95b717b3d3fe42ccfa2b019131a"
 	}
 }
