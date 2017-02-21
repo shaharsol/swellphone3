@@ -33,17 +33,20 @@ router.get('/spot/:spot_id',function(req,res,next){
 		},
 		// get photos from flickr
 		function(spot,lastPicForSpot,callback){
-			var since = lastPicForSpot ? lastPicForSpot.date_taken : null;
+			var since = lastPicForSpot.length > 0 ? lastPicForSpot[0].date_taken : null;
+			console.log('lastPicForSpot is %s',util.inspect(lastPicForSpot))
+console.log('since is %s',util.inspect(since))
 			flickr.geoSearch(spot.lat,spot.lon,1,since,function(err,photos){
 				callback(err,spot,photos)
 			})
 		},
 		// pass each photo trhough the ML
 		function(spot,photos,callback){
+			console.log('will async each over %s photos',photos.length)
 			async.each(photos,function(photo,callback){
 				async.waterfall([
 					// process the photo via ML
-					function(callabck){
+					function(callback){
 						ml.hasSurf(photo.url,function(err,hasSurf){
 							callback(err,hasSurf)
 						})

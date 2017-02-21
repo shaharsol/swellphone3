@@ -1,6 +1,6 @@
 <% pics.forEach(function(pic){ %>
   <div>
     <img src="<%=pic.url%>"/>
-    <p>taken at moment(pic.date_taken).calendar()</p>
+    <p>taken at <%=moment(pic.date_taken).calendar(null,{sameElse:'DD-MM-YYYY'})%></p>
   </div>
 <% }) %>
