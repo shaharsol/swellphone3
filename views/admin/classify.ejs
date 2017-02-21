@@ -1,0 +1,27 @@
+<div class="page-header">
+	<div class="page-title">
+		&nbsp;
+	</div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+		<form id="the-form" method="POST" action="/admin/classify" class="pull-left">
+			<input type="hidden" name="pic_id" value="<%=pic._id%>">
+			<input id="classification" type="hidden" name="has_surf" value="true">
+			<input type="submit" class="btn btn-success" value="has surf" style="margin: 8px;">
+		</form>
+		<form method="POST" action="/admin/classify" class="pull-left">
+			<input type="hidden" name="pic_id" value="<%=pic._id%>">
+			<input type="hidden" name="has_surf" value="false">
+			<input type="submit" class="btn btn-danger" value="no surf" style="margin: 8px;">
+		</form>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <img src="<%=pic.url%>">
+  </div>
+</div>

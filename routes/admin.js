@@ -15,6 +15,7 @@ var flickr = require('../app_modules/flickr');
 var alertIcons = require('../app_modules/alert-icons');
 
 var spots = require('../models/spots');
+var pics = require('../models/pics');
 
 router.get('/',function(req,res,next){
 	render(req,res,'admin/index',{})
@@ -59,6 +60,49 @@ router.post('/spots/add',function(req,res,next){
 				message: util.format('spot %s added successfully',spot.name)
 			}
 			res.redirect('/admin/spots')
+		}
+	})
+})
+
+
+router.get('/classify',function(req,res,next){
+
+	async.waterfall([
+		function(callback){
+			pics.getNextUnclassified(req.db,function(err,pic){
+				callback(err,pic)
+			})
+		}
+	],function(err,pic){
+		if(err){
+			errorHandler(req,res,next,err)
+		}else{
+console.log('pic to classify is %s',util.inspect(pic))
+			render(req,res,'admin/classify',{
+				pic: pic,
+				active_page: 'classify'
+			})
+		}
+	})
+
+})
+
+router.post('/classify',function(req,res,next){
+	async.waterfall([
+		function(callback){
+			pics.classify(req.db,req.body.pic_id,req.body.has_surf,function(err,pic){
+				callback(err,pic)
+			})
+		}
+	],function(err,pic){
+		if(err){
+			errorHandler(req,res,next,err)
+		}else{
+			req.session.alert = {
+				type: 'success',
+				message: util.format('pic %s clasified successfully',pic._id)
+			}
+			res.redirect('/admin/classify')
 		}
 	})
 })
