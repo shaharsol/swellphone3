@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PrintsFairy Admin</title>
+<title>SwellPhone 3.0 Admin</title>
 
 <link rel="icon" href="<%=config.get('app.cdn_url')%>/images/icon192.png">
 <link href="<%=config.get('app.cdn_url')%>/londinium/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -101,7 +101,7 @@
 			<li class="user dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown">
 					<img src="">
-					<span>Admin (<%=(dropbox ? dropbox.uid : '')%>)</span>
+					<span>Admin</span>
 					<i class="caret"></i>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-right icons-right">
@@ -128,15 +128,7 @@
 
 				<!-- Main navigation -->
 				<ul class="navigation">
-          <li class="<%= (active_page == 'crm' ? 'active' : '')%>"><a href="/admin/crm"><span>CRM</span> <i class="icon-people"></i></a></li>
-					<li class="<%= (active_page == 'billing_plans' ? 'active' : '')%>"><a href="/admin/billing-plans"><span>Billing Plans</span> <i class="icon-coin"></i></a></li>
-					<li class="<%= (active_page == 'scheduled_queue' ? 'active' : '')%>"><a href="/admin/queue/scheduled"><span>Scheduled Queue</span> <i class="icon-calendar4"></i></a></li>
-					<li class="<%= (active_page == 'filled_queue' ? 'active' : '')%>"><a href="/admin/queue/filled"><span>Filled Queue</span> <i class="icon-cart-checkout"></i></a></li>
-					<li class="<%= (active_page == 'pwinted_queue' ? 'active' : '')%>"><a href="/admin/queue/pwinted"><span>Pwinted Queue</span> <i class="icon-glass"></i></a></li>
-					<li class="<%= (active_page == 'manual_queue' ? 'active' : '')%>"><a href="/admin/queue/manual"><span>Manual Queue</span> <i class="icon-wrench"></i></a></li>
-          <li class="<%= (active_page == 'batches_new' ? 'active' : '')%>"><a href="/admin/batches/new"><span>New Batches</span> <i class="icon-list"></i></a></li>
-          <li class="<%= (active_page == 'batches_sent_to_print' ? 'active' : '')%>"><a href="/admin/batches/sent-to-print"><span>Sent-to-Print Batches</span> <i class="icon-print"></i></a></li>
-					<li class="<%= (active_page == 'sent_to_print_manually_queue' ? 'active' : '')%>"><a href="/admin/queue/sent-to-print-manually/next"><span>Sent to Print Manually Queue</span> <i class="icon-print2"></i></a></li>
+					<li class="<%= (active_page == 'spots' ? 'active' : '')%>"><a href="/admin/spots"><span>Spots</span> <i class="icon-coin"></i></a></li>
 				</ul>
 				<!-- /main navigation -->
 
@@ -169,7 +161,7 @@
 
 	        <!-- Footer -->
 	        <div class="footer clearfix">
-		        <div class="pull-left">&copy; 2017. PrintsFairy</div>
+		        <div class="pull-left">&copy; 2017. SwellPhone 3.0</div>
 	        	<div class="pull-right icons-group">
 	        		<a href="mailto:support@codemill.io"><i class="icon-envelop"></i></a>
 	        		<a href="https://github.com/CodeMillApp/support/issues"><i class="icon-github3"></i></a>

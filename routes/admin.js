@@ -12,10 +12,31 @@ var moment = require('moment')
 
 var errorHandler = require('../app_modules/error');
 var flickr = require('../app_modules/flickr');
+var alertIcons = require('../app_modules/alert-icons');
 
+var spots = require('../models/spots');
+
+router.get('/',function(req,res,next){
+	render(req,res,'admin/index',{})
+})
 
 router.get('/spots',function(req,res,next){
-	render(req,res,'admin/spots',{})
+
+	async.waterfall([
+		function(callback){
+			spots.all(req.db,function(err,spots){
+				callback(err,spots)
+			})
+		}
+	],function(err,spots){
+		if(err){
+			errorHandler(req,res,next,err)
+		}else{
+			render(req,res,'admin/spots',{
+				spots: spots
+			})
+		}
+	})
 })
 
 router.get('/spots/add',function(req,res,next){
@@ -23,13 +44,19 @@ router.get('/spots/add',function(req,res,next){
 })
 
 router.post('/spots/add',function(req,res,next){
-	async.waterfall([],function(err,spot){
+	async.waterfall([
+		function(callback){
+			spots.add(req.db,req.body.lat,req.body.lon,req.body.name,req.body.continent,req.body.country,req.body.region,function(err,spot){
+				callback(err,spot)
+			})
+		}
+	],function(err,spot){
 		if(err){
 			errorHandler(req,res,next,err)
 		}else{
 			req.session.alert = {
 				type: 'success',
-				message: util.format('spot %s added succerssfully',spot.name)
+				message: util.format('spot %s added successfully',spot.name)
 			}
 			res.redirect('/admin/spots')
 		}
@@ -45,16 +72,16 @@ function render(req,res,template,params){
 	params.config = config;
 	params.util = util;
 
-	// params.alertIcons = alertIcons;
-	// params.alert = req.session.alert;
-	// delete req.session.alert;
+	params.alertIcons = alertIcons;
+	params.alert = req.session.alert;
+	delete req.session.alert;
 
 	// params.user = req.session.user;
 
-	// if(!('active_page' in params)){
-	// 	params.active_page = false;
-	// }
-	//
+	if(!('active_page' in params)){
+		params.active_page = false;
+	}
+
 	// if(!('isHomepage' in params)){
 	// 	params.isHomepage = false;
 	// }

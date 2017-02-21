@@ -20,6 +20,7 @@ var mongoUri = config.get('mongo.uri');
 var db = monk(mongoUri);
 
 var index = require('./routes/index');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -61,6 +62,7 @@ app.use(function(req,res,next){
 
 
 app.use('/', index);
+app.use('/admin', admin);
 
 
 // catch 404 and forward to error handler

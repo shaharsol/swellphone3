@@ -12,9 +12,72 @@ var moment = require('moment')
 
 var errorHandler = require('../app_modules/error');
 var flickr = require('../app_modules/flickr');
+var ml = require('../app_modules/ml');
 
+var spots = require('../models/spots');
+var pics = require('../models/pics');
 
-
+router.get('/spot/:spot_id',function(req,res,next){
+	async.waterfall([
+		// load spot
+		function(callback){
+			spots.get(req.db,req.params.spot_id,function(err,spot){
+				callback(err,spot)
+			})
+		},
+		// get last pic for spot, so to filter the flickr apu call according to date taken
+		function(spot,callback){
+			pics.getLastForSpot(req.db,req.params.spot_id,function(err,lastPicForSpot){
+				callback(err,spot,lastPicForSpot)
+			})
+		},
+		// get photos from flickr
+		function(spot,lastPicForSpot,callback){
+			var since = lastPicForSpot ? lastPicForSpot.date_taken : null;
+			flickr.geoSearch(spot.lat,spot.lon,1,since,function(err,photos){
+				callback(err,spot,photos)
+			})
+		},
+		// pass each photo trhough the ML
+		function(spot,photos,callback){
+			async.each(photos,function(photo,callback){
+				async.waterfall([
+					// process the photo via ML
+					function(callabck){
+						ml.hasSurf(photo.url,function(err,hasSurf){
+							callback(err,hasSurf)
+						})
+					},
+					// insert to db
+					function(hasSurf,callback){
+						pics.add(req.db,photo.url,photo.date_taken,spot._id.toString(),hasSurf,function(err,pic){
+							callback(err,pic)
+						})
+					}
+				],function(err){
+					callback(err)
+				})
+			},function(err){
+				callback(err,spot)
+			})
+		},
+		// fetch photos to display
+		function(spot,callback){
+			pics.getForSpot(req.db,req.params.spot_id,function(err,pics){
+				callback(err,spot,pics)
+			})
+		}
+	],function(err,spot,pics){
+		if(err){
+			errorHandler(req,res,next,err)
+		}else{
+			render(req,res,'index/spot',{
+				spot: spot,
+				pics: pics
+			})
+		}
+	})
+})
 
 router.get('/feed/',function(req,res,next){
 	async.waterfall([
