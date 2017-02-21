@@ -15,7 +15,7 @@ var util = require('util')
 //mongo
 var mongo = require('mongodb');
 var monk = require('monk');
-// var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/gighub';
+// var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/swellphone3';
 var mongoUri = config.get('mongo.uri');
 var db = monk(mongoUri);
 

@@ -1,0 +1,50 @@
+<div class="page-header">
+	<div class="page-title">
+		&nbsp;
+	</div>
+</div>
+
+<div class="page-header">
+	<div class="page-title">
+		<a href="/admin/spots/add" class="btn btn-success"><i class="icon-plus"></i> Add Spot</a>
+	</div>
+</div>
+
+<div class="page-header">
+	<div class="page-title">
+		&nbsp;
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading"><h6 class="panel-title"><i class="icon-table"></i> Spots</h6></div>
+  <div class="datatable">
+    <table class="table">
+      <thead>
+        <tr>
+					<th>id</th>
+          <th>name</th>
+					<th>lat</th>
+          <th>lon</th>
+					<th>continent</th>
+					<th>country</th>
+          <th>region</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% plans.forEach(function(plan){ %>
+            <tr>
+								<td><%=spot._id%></td>
+	              <td><%=spot.name%></td>
+                <td><%=spot.lat%></td>
+                <td><%=spot.lon%></td>
+								<td><%=spot.continent%></td>
+								<td><%=spot.country%></td>
+                <td><%=spot.region%></td>
+                <td><%=moment(spot.created_at).format('YYYY-MM-DD')%></td>
+            </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>

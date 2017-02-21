@@ -20,6 +20,7 @@
 		"password": "password"
 	},
 	"flickr": {
-		"api_key": "0aa4a95b717b3d3fe42ccfa2b019131a"
+		"api_key": "7040fa5c88f1483067964733c4d4e44f",
+		"secret": "68c1a0da9392961f"
 	}
 }

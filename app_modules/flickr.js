@@ -31,6 +31,7 @@ module.exports = {
           }else if(response.statusCode > 300){
             callback(response.statusCode + ' : ' + body);
           }else{
+// console.log('flickr response: %s',body)
             var data = JSON.parse(body)
             photos = photos.concat(data.photos.photo);
             page = data.photos.page * data.photos.perpage > Number(data.photos.total) ? false : data.photos.page + 1;
@@ -44,7 +45,7 @@ module.exports = {
         _.each(photos,function(photo){
           ret.push(util.format('https://farm%s.staticflickr.com/%s/%s_%s.jpg',photo.farm,photo.server,photo.id,photo.secret))
         })
-console.log('final ret is: %s',util.inspect(ret))        
+console.log('final ret is: %s',util.inspect(ret))
         callback(err,ret)
       }
     );
