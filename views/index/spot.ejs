@@ -1,6 +1,10 @@
-<% pics.forEach(function(pic){ %>
-  <div>
-    <img src="<%=pic.url%>"/>
-    <p>taken at <%=moment(pic.date_taken).calendar(null,{sameElse:'DD-MM-YYYY'})%></p>
-  </div>
-<% }) %>
+<% if(pics.length == 0){%>
+  <h3>sorry, nothing to show</h3>
+<% }else{ %>
+  <% pics.forEach(function(pic){ %>
+    <div>
+      <img src="<%=pic.url%>"/>
+      <p>taken at <%=moment(pic.date_taken).calendar(null,{sameElse:'DD-MM-YYYY'})%></p>
+    </div>
+  <% }) %>
+<% } %>

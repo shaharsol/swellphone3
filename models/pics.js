@@ -7,9 +7,15 @@ module.exports = {
       callback(err,pic)
     })
   },
-  getForSpot: function(db,spotID,callback){
+  getAllForSpot: function(db,spotID,callback){
     var pics = db.get('pics');
-    pics.find({spot_id: spotID},{sort:{taken_at:-1}},function(err,pics){
+    pics.find({spot_id: spotID},{sort:{date_taken:-1}},function(err,pics){
+      callback(err,pics)
+    })
+  },
+  getForSpotWithSurf: function(db,spotID,callback){
+    var pics = db.get('pics');
+    pics.find({spot_id: spotID,ml_has_surf: true},{sort:{date_taken:-1}},function(err,pics){
       callback(err,pics)
     })
   },
@@ -18,7 +24,7 @@ module.exports = {
     pics.insert({
       spot_id: spotID,
       url: url,
-      ml_has_surf: hasSurf,
+      ml_has_surf: mlHasSurf,
       date_taken: moment(dateTaken).toDate()
     },function(err,pic){
       callback(err,pic)

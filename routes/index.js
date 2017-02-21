@@ -66,9 +66,15 @@ console.log('since is %s',util.inspect(since))
 		},
 		// fetch photos to display
 		function(spot,callback){
-			pics.getForSpot(req.db,req.params.spot_id,function(err,pics){
-				callback(err,spot,pics)
-			})
+			if(req.query.unfiltered){
+				pics.getAllForSpot(req.db,req.params.spot_id,function(err,pics){
+					callback(err,spot,pics)
+				})
+			}else{
+				pics.getForSpotWithSurf(req.db,req.params.spot_id,function(err,pics){
+					callback(err,spot,pics)
+				})
+			}
 		}
 	],function(err,spot,pics){
 		if(err){
