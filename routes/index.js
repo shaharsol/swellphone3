@@ -78,7 +78,7 @@ console.log('since is %s',util.inspect(since))
 		}
 	],function(err,spot,pics){
 		if(err){
-			errorHandler(req,res,next,err)
+			errorHandler.error(req,res,next,err)
 		}else{
 			render(req,res,'index/spot',{
 				spot: spot,
@@ -97,7 +97,7 @@ router.get('/feed/',function(req,res,next){
 		},
 	],function(err,photos){
 		if(err){
-			errorHandler(req,res,next,err)
+			errorHandler.error(req,res,next,err)
 		}else{
 			render(req,res,'index/feed',{
 				photos: photos

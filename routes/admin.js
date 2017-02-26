@@ -31,7 +31,7 @@ router.get('/spots',function(req,res,next){
 		}
 	],function(err,spots){
 		if(err){
-			errorHandler(req,res,next,err)
+			errorHandler.error(req,res,next,err)
 		}else{
 			render(req,res,'admin/spots',{
 				spots: spots
@@ -53,7 +53,7 @@ router.post('/spots/add',function(req,res,next){
 		}
 	],function(err,spot){
 		if(err){
-			errorHandler(req,res,next,err)
+			errorHandler.error(req,res,next,err)
 		}else{
 			req.session.alert = {
 				type: 'success',
@@ -75,7 +75,7 @@ router.get('/classify',function(req,res,next){
 		}
 	],function(err,pic){
 		if(err){
-			errorHandler(req,res,next,err)
+			errorHandler.error(req,res,next,err)
 		}else{
 console.log('pic to classify is %s',util.inspect(pic))
 			render(req,res,'admin/classify',{
@@ -96,7 +96,7 @@ router.post('/classify',function(req,res,next){
 		}
 	],function(err,pic){
 		if(err){
-			errorHandler(req,res,next,err)
+			errorHandler.error(req,res,next,err)
 		}else{
 			req.session.alert = {
 				type: 'success',
