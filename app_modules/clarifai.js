@@ -17,9 +17,17 @@ module.exports = {
                     var concepts = JSON.parse(JSON.stringify(response.outputs[0].data.concepts));
                     var keywords = config.get('clarifai.good_keywords');
 
+                    // get average score
+                    var avgScore = 0;
+                    _.each(concepts, function (v) {
+                        avgScore += v.value;
+                    });
+                    avgScore = avgScore / concepts.length;
+
+                    // check if keyword above average
                     var isHasSurf = false;
                     _.each(concepts, function (v) {
-                        if (keywords.indexOf(v.name) > -1) {
+                        if (keywords.indexOf(v.name) > -1 && v.value >= avgScore) {
                             isHasSurf = true;
                         }
                     });
