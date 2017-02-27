@@ -36,6 +36,10 @@
                     "wave"
                 ]
         },
+        "clarifai2": {
+                "api_key": "ZWDM5oIliOLLqfyk7YS00odTHUF4jM3OgkmsgLv0",
+                "secret": "kk8CWwbFWNf1CyjgLUsM0IaXklrjxciKOSlUPOiq"
+        },
 	"google": {
 		"projectId": "kaboom-140415",
 		"api_key": "AIzaSyBwvfWAzLTg6V1InNkK-jgMrqrWRTNs9I8"
