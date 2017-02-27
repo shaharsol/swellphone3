@@ -19,6 +19,8 @@ var monk = require('monk');
 var mongoUri = config.get('mongo.uri');
 var db = monk(mongoUri);
 
+var cors = require('express-cors')
+
 var index = require('./routes/index');
 var admin = require('./routes/admin');
 var api = require('./routes/api');
@@ -37,7 +39,11 @@ app.use(session({
 
 app.use(partials());
 
-
+app.use(cors({
+    allowedOrigins: [
+        'localhost:3002'
+    ]
+}))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
