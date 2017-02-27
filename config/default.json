@@ -35,5 +35,8 @@
                     "surfing",
                     "wave"
                 ]
-        }
+        },
+	"google": {
+		"projectId": ""
+	}
 }
