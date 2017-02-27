@@ -17,6 +17,25 @@ var ml = require('../app_modules/ml');
 var spots = require('../models/spots');
 var pics = require('../models/pics');
 
+
+router.get('/',function(req,res,next){
+	async.waterfall([
+		function(callback){
+			spots.all(req.db,function(err,spots){
+				callback(err,spots)
+			})
+		}
+	],function(err,spots){
+		if(err){
+			errorHandler.error(req,res,next,err)
+		}else{
+			render(req,res,'index/index',{
+				spots: spots,
+			})
+		}
+	})
+})
+
 router.get('/spot/:spot_id',function(req,res,next){
 	async.waterfall([
 		// load spot
