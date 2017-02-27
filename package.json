@@ -37,9 +37,8 @@
     "serve-favicon": "~2.3.0",
     "clarifai": "^2.1.3-dev",
     "lodash": "^4.17.4",
-    "express-cors": "*"
-  },
-  "devDependencies": {
+    "express-cors": "*",
+    "@google-cloud/vision": "*"   ,
     "cognitive-services": "^0.1.0"
   }
 }
