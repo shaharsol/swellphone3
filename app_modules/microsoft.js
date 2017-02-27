@@ -1,31 +1,31 @@
-import cognitiveServices from 'cognitive-services';
-import keys from '../config/microsoft.json';
+var config = require('../config/microsoft.json');
+var microsofComputerVision = require('microsoft-computer-vision');
 
-const computerVision = new cognitiveServices.computerVision({
-  API_KEY: keys.microsoft
-});
-
-const parameters = {
-  visualFeatures: "Categories"
-};
-
-const body = {
-  "url": "http://example.com/images/test.jpg"
+var keywords = {
+    'wave': 0.9,
+    'water sport': 0.4,
+    'beach': 0.4,
+    'surf': 0.9,
+    'surfing': 0.9,
+    'ocean': 0.9,
 };
 
 module.exports = {
   hasSurf: function(photoUrl, callback){
-    computerVision.analyzeImage({
-      parameters,
-      body
+    microsofComputerVision.analyzeImage({
+      "Ocp-Apim-Subscription-Key": config.microsoft.key,
+      "content-type": "application/json",
+      "url": photoUrl,
+      "visual-features":"Tags"
     })
       .then((response) => {
-        console.log('Got response', response);
+        var tags  = response.tags.filter(tag => {
+          return keywords[tag.name] !== undefined && tag.confidence > keywords[tag.name];
+        });
+        callback(null, (tags.length > 0));
       })
       .catch((err) => {
-        console.error('Encountered error making request:', err);
+        callback(err);
       });
-    
-    callback(null,false)
   }
 };
