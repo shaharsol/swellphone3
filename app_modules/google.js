@@ -1,19 +1,23 @@
 const config = require('config')
 const Vision = require('@google-cloud/vision');
-
+var _ = require('underscore')
 const vision = Vision({
-  auth: config.get('google.api_key')
+  projectId: config.get('google.projectId')
 });
 
 const terms = [ 'sea', 'ocean', 'body of water', 'coast' ]
 
+var util = require('util')
+
 module.exports = {
   hasSurf: function(photoUrl,callback){
+console.log('entered hasSurf')
     vision.detectLabels(photoUrl)
       .then(function(results){
-        return callback(photoUrl, results[0].some(function(label){
-          return terms.includes(label)
-        }))
+console.log(util.inspect(results))
+        return _.intersection(results[0], terms).length > 0
+      }).catch(function(error){
+        console.log('err is %s',error)
       })
   }
 }

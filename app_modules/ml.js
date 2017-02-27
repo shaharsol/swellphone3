@@ -2,7 +2,6 @@ var config = require('config')
 
 var clarifai = require('../app_modules/clarifai')
 var google = require('../app_modules/google')
-var microsoft = require('../app_modules/microsoft')
 
 module.exports = {
   hasSurf: function(photoUrl,callback){
@@ -15,6 +14,7 @@ module.exports = {
         google.hasSurf(photoUrl,callback);
         break;
       case 'microsoft':
+        var microsoft = require('../app_modules/microsoft')
         microsoft.hasSurf(photoUrl,callback);
         break;
       default:
