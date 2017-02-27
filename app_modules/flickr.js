@@ -13,7 +13,11 @@ module.exports = {
 
     async.whilst(
       function(){
-        return page;
+        if(photos.length > 100){
+          return false
+        }else{
+          return page;
+        }
       },
       function(callback){
         var qs = {
