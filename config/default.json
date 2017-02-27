@@ -23,5 +23,18 @@
 	"flickr": {
 		"api_key": "7040fa5c88f1483067964733c4d4e44f",
 		"secret": "68c1a0da9392961f"
-	}
+	},
+        "clarifai": {
+                "api_key": "Jou3IFs2X_mO2KhGdMyRXtuWrcLJDpuS_Jfx_d30",
+                "secret": "O6SGGpJxDSVIYX4QQ_pU2COdWpcHObg3hO-Mqb-x",
+                "good_keywords": [
+                    "sea",
+                    "ocean",
+                    "no person",
+                    "seashore",
+                    "surf",
+                    "surfing",
+                    "wave"
+                ]
+        }
 }
