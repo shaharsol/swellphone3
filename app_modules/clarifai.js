@@ -25,14 +25,15 @@ module.exports = {
                     avgScore = avgScore / concepts.length;
 
                     // check if keyword above average
-                    var isHasSurf = false;
+                    var found = [];
                     _.each(concepts, function (v) {
                         if (keywords.indexOf(v.name) > -1 && v.value >= avgScore) {
-                            isHasSurf = true;
+                            found.push(v.name);
                         }
+                        console.log(v.name, v.value, keywords.indexOf(v.name) > -1);
                     });
 
-                    callback(null, isHasSurf);
+                    callback(null, found.length >= keywords.length / 2);
 
                 },
                 function (err) {
