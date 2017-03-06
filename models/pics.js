@@ -30,6 +30,18 @@ module.exports = {
       callback(err,pic)
     })
   },
+  addFromInstagram: function(db,url,dateTaken,spotID,inatagramData,mlHasSurf,callback){
+    var pics = db.get('pics');
+    pics.insert({
+      spot_id: spotID,
+      url: url,
+      ml_has_surf: mlHasSurf,
+      date_taken: moment(dateTaken).toDate(),
+      instagram: inatagramData
+    },function(err,pic){
+      callback(err,pic)
+    })
+  },
   getNextUnclassified: function(db,callback){
     var pics = db.get('pics');
     pics.find({human_has_surf:{$exists: false}},{limit:1},function(err,pic){

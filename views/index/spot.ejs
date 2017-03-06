@@ -4,7 +4,7 @@
   <% pics.forEach(function(pic){ %>
     <div>
       <img src="<%=pic.url%>"/>
-      <p>taken at <%=moment(pic.date_taken).calendar(null,{sameElse:'DD-MM-YYYY'})%></p>
+      <p>taken at <%=moment(pic.date_taken).calendar(null,{sameElse:'DD-MM-YYYY'})%> by <a href="http://instagram.com/<%=pic.instagram.user.username%>">@<%=pic.instagram.user.username%></a></p>
     </div>
   <% }) %>
 <% } %>

@@ -82,7 +82,7 @@ console.log('since is %s',util.inspect(since))
 					},
 					// insert to db
 					function(hasSurf,callback){
-						pics.add(req.db,photo.url,photo.date_taken,spot._id.toString(),hasSurf,function(err,pic){
+						pics.addFromInstagram(req.db,photo.url,photo.date_taken,spot._id.toString(),photo.instagram,hasSurf,function(err,pic){
 							callback(err,pic)
 						})
 					}

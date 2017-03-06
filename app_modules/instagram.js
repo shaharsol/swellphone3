@@ -39,7 +39,7 @@ console.log('isntagra response: %s',util.inspect(data,{depth:8}))
             var instagramPhotos = data.data;
 console.log('got those intagram photos %s',instagramPhotos)
             var obsoleteImage = _.find(instagramPhotos,function(photo){
-              var isObsolete = moment(photo.created_time).isBefore(moemnt(since))
+              var isObsolete = moment(Number(photo.created_time + '000')).isSameOrBefore(moment(since))
               if(!isObsolete){
                 photos.push(photo)
               }
@@ -55,7 +55,7 @@ console.log('got those intagram photos %s',instagramPhotos)
         _.each(photos,function(photo){
           ret.push({
             url: photo.images.standard_resolution.url,
-            date_taken: photo.created_time,
+            date_taken: moment(Number(photo.created_time + '000')).toDate(),
             instagram: photo
           })
         })
