@@ -41,7 +41,7 @@ app.use(partials());
 
 app.use(cors({
     allowedOrigins: [
-        'localhost:3002'
+        'localhost:3000'
     ]
 }))
 // view engine setup

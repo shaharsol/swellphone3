@@ -38,6 +38,8 @@
     "clarifai": "^2.1.3-dev",
     "lodash": "^4.17.4",
     "express-cors": "*",
-    "@google-cloud/vision": "*"    
+    "@google-cloud/vision": "*",
+    "xml2js": "*",
+    "cheerio": "*"    
   }
 }

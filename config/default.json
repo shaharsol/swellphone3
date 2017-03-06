@@ -11,7 +11,7 @@
 		"commission": 0.1,
 		"max_tasks_per_developer": 2,
 		"cdn_url": "",
-		"ml_provider": "clarifai"
+		"ml_provider": "clarifai2"
 	},
 	"mongo": {
 		"uri": "mongodb://localhost:27017/swellphone3"

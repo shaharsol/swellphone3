@@ -62,7 +62,7 @@ console.log('since is %s',util.inspect(since))
 		// pass each photo trhough the ML
 		function(spot,photos,callback){
 			console.log('will async each over %s photos',photos.length)
-			async.each(photos,function(photo,callback){
+			async.eachLimit(photos,1,function(photo,callback){
 				async.waterfall([
 					// process the photo via ML
 					function(callback){
