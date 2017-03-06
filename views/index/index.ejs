@@ -1,10 +1,70 @@
 <div class="row">
   <div class="col-md-4 offset-md-4">
-    <input type="text" placeholder="Start typing spot name...">
+    <input style="font-size:24px;" type="text" placeholder="Start typing spot name..." class="typeahead">
+    <input type="hidden" id="spot_id" value="">
+    <button onclick="viewSurfReports()">View Surf Reports</button>
   </div>
 </div>
 
+<script>
 
-<% spots.forEach(function(spot){
-  console.log('spot is %s,%s',spot.lat,spot.lon)
-}) %>
+function viewSurfReports(){
+  window.location.href = "/spot/" + $('#spot_id').val()
+}
+
+$(function(){
+
+  var jsonData = <%-JSON.stringify(spots)%>;
+
+  var dataSource = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      identify: function(obj) { return obj._id; },
+      local: jsonData
+
+  });
+
+  dataSource.initialize();
+
+
+  $('.typeahead').typeahead({
+      minLength: 0,
+      highlight: true
+  }, {
+      name: 'spots',
+      display: function(item){ return item.name},
+      source: dataSource.ttAdapter(),
+      // templates: {
+      //     empty: [
+      //         '<div class="empty">No Matches Found</div>'].join('\n'),
+      //     suggestion: function (data) {
+      //         return '<div>' + data.country + '–' + data.city + '</div>'
+      //     }
+      // }
+  }).on('typeahead:select', function(ev, suggestion) {
+    $('#spot_id').val(suggestion._id);
+  });
+
+
+
+  // var spots = new Bloodhound({
+  //   datumTokenizer: Bloodhound.tokenizers.whitespace,
+  //   queryTokenizer: Bloodhound.tokenizers.whitespace,
+  //   // `states` is an array of state names defined in "The Basics"
+  //   identify: function(obj) { return obj._id; },
+  //   local: <%-JSON.stringify(spots)%>
+  // });
+  //
+  // $('.typeahead').typeahead({
+  //   hint: true,
+  //   highlight: true,
+  //   minLength: 1
+  // },
+  // {
+  //   name: 'spots',
+  //   displayKey: 'name',
+  //   source: spots
+  // });
+})
+
+</script>
