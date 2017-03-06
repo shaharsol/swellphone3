@@ -24,6 +24,7 @@ var cors = require('express-cors')
 var index = require('./routes/index');
 var admin = require('./routes/admin');
 var api = require('./routes/api');
+var instagram = require('./routes/instagram');
 
 var app = express();
 
@@ -71,6 +72,7 @@ app.use(function(req,res,next){
 app.use('/', index);
 app.use('/admin', admin);
 app.use('/api', api);
+app.use('/instagram', instagram);
 
 
 // catch 404 and forward to error handler

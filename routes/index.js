@@ -12,6 +12,7 @@ var moment = require('moment')
 
 var errorHandler = require('../app_modules/error');
 var flickr = require('../app_modules/flickr');
+var instagram = require('../app_modules/instagram');
 var ml = require('../app_modules/ml');
 
 var spots = require('../models/spots');
@@ -50,12 +51,21 @@ router.get('/spot/:spot_id',function(req,res,next){
 				callback(err,spot,lastPicForSpot)
 			})
 		},
-		// get photos from flickr
+// 		// get photos from flickr
+// 		function(spot,lastPicForSpot,callback){
+// 			var since = lastPicForSpot.length > 0 ? lastPicForSpot[0].date_taken : null;
+// 			console.log('lastPicForSpot is %s',util.inspect(lastPicForSpot))
+// console.log('since is %s',util.inspect(since))
+// 			flickr.geoSearch(spot.lat,spot.lon,1,since,function(err,photos){
+// 				callback(err,spot,photos)
+// 			})
+// 		},
+		// get photos from instagram
 		function(spot,lastPicForSpot,callback){
-			var since = lastPicForSpot.length > 0 ? lastPicForSpot[0].date_taken : null;
+			var since = lastPicForSpot.length > 0 ? lastPicForSpot[0].date_taken : moment().subtract(7,'days').toDate();
 			console.log('lastPicForSpot is %s',util.inspect(lastPicForSpot))
 console.log('since is %s',util.inspect(since))
-			flickr.geoSearch(spot.lat,spot.lon,1,since,function(err,photos){
+			instagram.geoSearch(spot.lat,spot.lon,200,since,req.session.user.instagram.access_token,function(err,photos){
 				callback(err,spot,photos)
 			})
 		},

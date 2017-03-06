@@ -11,7 +11,7 @@
 		"commission": 0.1,
 		"max_tasks_per_developer": 2,
 		"cdn_url": "",
-		"ml_provider": "clarifai2"
+		"ml_provider": "clarifai"
 	},
 	"mongo": {
 		"uri": "mongodb://localhost:27017/swellphone3"
@@ -24,24 +24,29 @@
 		"api_key": "7040fa5c88f1483067964733c4d4e44f",
 		"secret": "68c1a0da9392961f"
 	},
-        "clarifai": {
-                "api_key": "Jou3IFs2X_mO2KhGdMyRXtuWrcLJDpuS_Jfx_d30",
-                "secret": "O6SGGpJxDSVIYX4QQ_pU2COdWpcHObg3hO-Mqb-x",
-                "good_keywords": [
-                    "sea",
-                    "ocean",
-                    "seashore",
-                    "surf",
-                    "surfing",
-                    "wave"
-                ]
-        },
-        "clarifai2": {
-                "api_key": "ZWDM5oIliOLLqfyk7YS00odTHUF4jM3OgkmsgLv0",
-                "secret": "kk8CWwbFWNf1CyjgLUsM0IaXklrjxciKOSlUPOiq"
-        },
+  "clarifai": {
+    "api_key": "Jou3IFs2X_mO2KhGdMyRXtuWrcLJDpuS_Jfx_d30",
+    "secret": "O6SGGpJxDSVIYX4QQ_pU2COdWpcHObg3hO-Mqb-x",
+    "good_keywords": [
+        "sea",
+        "ocean",
+        "seashore",
+        "surf",
+        "surfing",
+        "wave"
+    ]
+  },
+  "clarifai2": {
+    "api_key": "ZWDM5oIliOLLqfyk7YS00odTHUF4jM3OgkmsgLv0",
+    "secret": "kk8CWwbFWNf1CyjgLUsM0IaXklrjxciKOSlUPOiq"
+  },
 	"google": {
 		"projectId": "kaboom-140415",
 		"api_key": "AIzaSyBwvfWAzLTg6V1InNkK-jgMrqrWRTNs9I8"
+	},
+	"instagram": {
+		"client_id": "eb3f57299ab048628532750619e52d2b",
+		"client_secret": "2ae4056bf7184992bfad9aee6c83839b",
+		"redirect_domain": "localhost:3002"
 	}
 }

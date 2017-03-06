@@ -44,7 +44,7 @@
     "express-cors": "*",
     "@google-cloud/vision": "*",
     "xml2js": "*",
-    "cheerio": "*"
+    "cheerio": "*",
     "underscore": "*",
     "underscore.string": "*"
   }
