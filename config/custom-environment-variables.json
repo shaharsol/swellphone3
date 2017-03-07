@@ -1,0 +1,15 @@
+{
+	"app": {
+		"cookie_secret": "APP_COOKIE_SECRET",
+		"unsubscribe_secret": "APP_UNSUBSCRIBE_SECRET"
+	},
+	"mongo": {
+		"uri": "MONGODB_URI"
+	},
+	"clarifai": {
+		"secret": "CLARIFAI_SECRET"
+	},
+	"instagram": {
+		"client_secret": "INSTAGRAM_CLIENT_SECRET"
+	}
+}

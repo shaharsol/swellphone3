@@ -15,7 +15,14 @@ module.exports = {
                     console.log("Response");
 
                     var concepts = JSON.parse(JSON.stringify(response.outputs[0].data.concepts));
-                    var keywords = config.get('clarifai.good_keywords');
+                    var keywords = [
+                        "sea",
+                        "ocean",
+                        "seashore",
+                        "surf",
+                        "surfing",
+                        "wave"
+                    ];
 
                     // get average score
                     var avgScore = 0;

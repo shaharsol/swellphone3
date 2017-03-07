@@ -1,0 +1,24 @@
+{
+	"app": {
+		"name": "chesthigh",
+		"domain": "chesthigh.com",
+		"protocol": "http",
+		"email": "shaharsol@tikalk.com",
+		"cookie_secret": "",
+		"unsubscribe_secret": "",
+		"cdn_url": "",
+		"ml_provider": "clarifai"
+	},
+	"mongo": {
+		"uri": ""
+	},
+  "clarifai": {
+    "api_key": "_UZE1_46EDoKvR84A6h5mCmD_c1BNPYzp7UTlPz7",
+    "secret": ""
+  },
+	"instagram": {
+		"client_id": "eb3f57299ab048628532750619e52d2b",
+		"client_secret": "",
+		"redirect_domain": "chesthigh.com"
+	}
+}
