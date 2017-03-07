@@ -1,10 +1,31 @@
-<div class="row">
-  <div class="col-md-4 offset-md-4">
-    <input style="font-size:24px;" type="text" placeholder="Start typing spot name..." class="typeahead">
-    <input type="hidden" id="spot_id" value="">
-    <button onclick="viewSurfReports()">View Surf Reports</button>
-  </div>
-</div>
+<section class="inner-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+
+				<span class="icon-96">
+	      			<i class="ion-social-instagram"></i>
+	    		</span>
+
+				<h2>Choose a Surf Spot to View</h2>
+
+				<div class="colored-line">
+				</div>
+
+        <div>
+          <input style="font-size:24px;" type="text" placeholder="Start typing spot name..." class="typeahead">
+        </div>
+				<div>
+					<button onclick="viewSurfReports()" id="connect-dropbox-button" href="/instagram/authorize" class="btn standard-button inner-button">View Surf Reports</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<input type="hidden" id="spot_id" value="">
+
 
 <script>
 

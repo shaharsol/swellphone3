@@ -23,10 +23,20 @@ router.get('/logout',function(req,res,next){
 	res.redirect('/')
 })
 
+router.get('/privacy-policy',function(req,res,next){
+	render(req,res,'index/privacy-policy',{})
+})
+
+router.get('/connect-instagram',function(req,res,next){
+	render(req,res,'index/connect-instagram',{})
+})
+
 router.get('/',function(req,res,next){
 
 	if(!req.session.user){
-		render(req,res,'index/instagram',{})
+		render(req,res,'index/homepage',{
+			isHomepage: true
+		})
 	}else{
 		async.waterfall([
 			function(callback){
@@ -159,15 +169,11 @@ function render(req,res,template,params){
 	// params.alert = req.session.alert;
 	// delete req.session.alert;
 
-	// params.user = req.session.user;
+	params.user = req.session.user;
 
-	// if(!('active_page' in params)){
-	// 	params.active_page = false;
-	// }
-	//
-	// if(!('isHomepage' in params)){
-	// 	params.isHomepage = false;
-	// }
+	if(!('isHomepage' in params)){
+		params.isHomepage = false;
+	}
 
 	res.render(template,params);
 }
